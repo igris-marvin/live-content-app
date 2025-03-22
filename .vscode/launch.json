@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LiveApplication<live>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "marvin.igris.live.LiveApplication",
+            "projectName": "live",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
