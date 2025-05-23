@@ -1,0 +1,8 @@
+spring.application.name: live-server
+
+server:
+  port: 8080
+
+logging.level.org.springframework:
+  web.socket: DEBUG
+  messaging.simp: DEBUG

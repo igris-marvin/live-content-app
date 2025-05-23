@@ -9,6 +9,16 @@
             "projectName": "live",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-LiveServerApplication<live-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "igris.marvin.live_server.LiveServerApplication",
+            "projectName": "live-server",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
