@@ -1,54 +1,74 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useLive } from "./hooks/useLive";
+import { convertUTCToDate } from "./utils/date_conversion";
+
 
 function App() {
 
   const {
     name, handleNameChange,
-    disBtn, handleDisBtnChange,
-    messageList
+    disBtn,
+    // connBtn,
+    greetList,
+    connect, disconnect, sendName
   } = useLive();
 
   return (
     <>
-      -
       <div id="main-content" className="container">
         <div className="row">
           <div className="col-md-6">
-            <form className="form-inline">
-              <div className="form-group">
-                <label htmlFor="connect">WebSocket connection:</label>
-                <button id="connect" className="btn btn-default" type="submit">
-                  Connect
-                </button>
-                <button
-                  id="disconnect"
-                  className="btn btn-default"
-                  type="submit"
-                  disabled={disBtn}
-                >
-                  Disconnect
-                </button>
-              </div>
-            </form>
+
+            <div className="form-group">
+              <label htmlFor="connect">WebSocket connection:</label>
+              <button
+                onClick={connect}
+                // disabled={connBtn}
+
+                id="connect"
+                className="btn btn-default"
+                type="submit"
+              >
+                Connect
+              </button>
+              <button
+                onClick={disconnect}
+                disabled={disBtn}
+
+                id="disconnect"
+                className="btn btn-default"
+                type="submit"
+              >
+                Disconnect
+              </button>
+            </div>
+
           </div>
           <div className="col-md-6">
-            <form className="form-inline">
-              <div className="form-group">
-                <label htmlFor="name">What is your name?</label>
-                <input
-                  value={name}
-                  onChange={(e) => handleNameChange(e.target.value)}
 
-                  type="text"
-                  id="name"
-                  className="form-control"
-                  placeholder="Your name here..."
-                />
-              </div>
-              <button id="send" className="btn btn-default" type="submit">
-                Send
-              </button>
-            </form>
+            <div className="form-group">
+              <label htmlFor="name">What is your name?</label>
+              <input
+                value={name}
+                onChange={(e) => handleNameChange(e.target.value)}
+
+                type="text"
+                id="name"
+                className="form-control"
+                placeholder="Your name here..."
+              />
+            </div>
+            <button
+              onClick={sendName}
+
+              id="send"
+              className="btn btn-default"
+              type="submit"
+            >
+              Send
+            </button>
+
           </div>
         </div>
         <div className="row">
@@ -62,14 +82,26 @@ function App() {
 
               {/* TODO list greetings */}
               {
-                messageList
+                greetList
+                  .sort(
+                    (a, b) => {
+                      const date1 = convertUTCToDate(a.ts);
+                      const date2 = convertUTCToDate(b.ts);
+
+                      return date1.valueOf() - date2.valueOf();
+                    }
+                  )
                   .map(
-                    (message, index) => {
+                    (greet, index) => {
+                      
+                      const d = convertUTCToDate(greet.ts);
+
                       return (
                         <tr key={index}>
-                          <td>{message.greeting}</td>
+                          <td>{`${greet.content} | ${d.format("DD MMM, YYYY hh:mm:ss A")}`} </td>
                         </tr>
                       )
+
                     }
                   )
               }

@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,4 +15,5 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 public class Greeting {
     private String content;
+    private Date ts;
 }

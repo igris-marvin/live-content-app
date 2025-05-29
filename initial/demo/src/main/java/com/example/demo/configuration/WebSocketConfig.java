@@ -41,9 +41,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
 
-        // The registerStompEndpoints() method registers the /gs-guide-websocket 
+        final String client = "http://localhost:5173";
+
+        // The registerStompEndpoints() method registers the /ws 
         // endpoint for websocket connections.
-        registry.addEndpoint("/gs-guide-websocket");
+        registry.addEndpoint("/ws")
+            .setAllowedOriginPatterns(client)
+            .setAllowedOrigins(client);
     }
 
 }

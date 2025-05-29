@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ServerSocketApplication<server-socket>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "igris.marvin.server_socket.ServerSocketApplication",
+            "projectName": "server-socket",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,9 +1,9 @@
 const stompClient = new StompJs.Client(
     {
         // stompClient is initialized with brokerURL referring to 
-        // path /gs-guide-websocket, which is where our websockets 
+        // path /ws, which is where our websockets 
         // server waits for connections.
-        brokerURL: 'ws://localhost:8080/gs-guide-websocket'
+        brokerURL: 'ws://localhost:8080/ws'
     }
 );
 
@@ -41,50 +41,55 @@ stompClient.onStompError = (frame) => {
 };
 
 // HANDLERS
-function setConnected(connected) {
-    $("#connect").prop("disabled", connected);
-    $("#disconnect").prop("disabled", !connected);
-    if (connected) {
-        $("#conversation").show();
-    }
-    else {
-        $("#conversation").hide();
-    }
-    $("#greetings").html("");
-}
+// function setConnected(connected) {
+//     $("#connect").prop("disabled", connected);
+//     $("#disconnect").prop("disabled", !connected);
+//     if (connected) {
+//         $("#conversation").show();
+//     }
+//     else {
+//         $("#conversation").hide();
+//     }
+//     $("#greetings").html("");
+// }
 
-function connect() {
-    stompClient.activate();
-}
+// function connect() {
+//     stompClient.activate();
+// }
 
-function disconnect() {
-    stompClient.deactivate();
-    setConnected(false);
-    console.log("Disconnected");
-}
+// function disconnect() {
+//     stompClient.deactivate();
+//     setConnected(false);
+//     console.log("Disconnected");
+// }
 
 // send name
-function sendName() {
+// function sendName() {
     
-    // The sendName() function retrieves the name entered by the user and 
-    // uses the STOMP client to send it to the /app/hello destination 
-    // (where GreetingController.greeting() will receive it).
-    stompClient
-        .publish(
-            {
-                destination: "/app/hello",
-                body: JSON.stringify({ 'name': $("#name").val() })
-            }
-        );
-}
+//     // The sendName() function retrieves the name entered by the user and 
+//     // uses the STOMP client to send it to the /app/hello destination 
+//     // (where GreetingController.greeting() will receive it).
+//     stompClient
+//         .publish(
+//             {
+//                 destination: "/app/hello",
+//                 body: JSON.stringify({ 'name': $("#name").val() })
+//             }
+//         );
+// }
 
-function showGreeting(message) {
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
-}
+// function showGreeting(message) {
+//     $("#greetings")
+//         .append(
+//             "<tr>" +
+//                 "<td>" + message + "</td>" +
+//             "</tr>"
+//         );
+// }
 
-$(function () {
-    $("form").on('submit', (e) => e.preventDefault());
-    $("#connect").click(() => connect());
-    $("#disconnect").click(() => disconnect());
-    $("#send").click(() => sendName());
-});
+// $(function () {
+//     $("form").on('submit', (e) => e.preventDefault());
+//     $("#connect").click(() => connect());
+//     $("#disconnect").click(() => disconnect());
+//     $("#send").click(() => sendName());
+// });
